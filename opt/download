@@ -4,8 +4,9 @@ import dropbox
 import os
 from zipfile import ZipFile
 
+TOKEN = os.environ.get('DBX_TOKEN')
 print('DOWNLOADING FILES --------------')
-dbx = dropbox.Dropbox('z-LLt0_GOUAAAAAAAAAAT0biI03WUoGigZ6nXdhQrwidN7aw39-fSWwFoX5ITSh7')
+dbx = dropbox.Dropbox(TOKEN)
 result = dbx.files_download_zip_to_file('temp.zip','/world')
 with ZipFile('temp.zip', 'r') as zipObj:
     for fileName in zipObj.namelist():
