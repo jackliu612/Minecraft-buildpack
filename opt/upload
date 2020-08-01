@@ -14,6 +14,7 @@ TOKEN = os.environ.get('DBX_TOKEN')
 def main():
     """Main program.
     """
+print('UPLOADING FILES --------------')
 dbx = dropbox.Dropbox(TOKEN)
 
 # get an access token, local (from) directory, and Dropbox (to) directory

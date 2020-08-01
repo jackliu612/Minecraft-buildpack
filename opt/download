@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+import dropbox
+import os
+from zipfile import ZipFile
+
+print('DOWNLOADING FILES --------------')
+dbx = dropbox.Dropbox('z-LLt0_GOUAAAAAAAAAAT0biI03WUoGigZ6nXdhQrwidN7aw39-fSWwFoX5ITSh7')
+result = dbx.files_download_zip_to_file('temp.zip','/world')
+with ZipFile('temp.zip', 'r') as zipObj:
+    for fileName in zipObj.namelist():
+        if 'world/' in fileName:
+            zipObj.extract(fileName)
+os.remove('temp.zip')
+
+print('FINISHED DOWNLOADING FILES --------------')
