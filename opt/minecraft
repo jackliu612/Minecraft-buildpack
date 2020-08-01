@@ -18,7 +18,7 @@ ngrok_pid=$!
 echo "Starting sync..."
 bin/sync
 if [ "$READ_ONLY" != "true" ]; then
-  eval "while true; do sleep ${AWS_SYNC_INTERVAL:-3600}; bin/sync; done &"
+  eval "while true; do sleep ${AWS_SYNC_INTERVAL:-120}; bin/sync; done &"
   sync_pid=$!
 fi
 
@@ -42,7 +42,7 @@ case $limit in
 esac
 
 echo "Starting: minecraft ${mc_port}"
-eval "screen -L -h 2048 -dmS minecraft java -Xmx384m -Xms384m -jar minecraft.jar nogui"
+eval "screen -L -h 2048 -dmS minecraft java -Xmx1g -Xms1g -jar minecraft.jar nogui"
 main_pid=$!
 
 # Flush the logfile every second, and ensure that the logfile exists
