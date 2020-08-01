@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ -n "$DBX_TOKEN" ]; then
-bin/test -folder world -rootdir world -y
+bin/test -y world world
 #   cat << EOF > .s3cfg
 # [default]
 # access_key = ${AWS_ACCESS_KEY}
