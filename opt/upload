@@ -90,17 +90,10 @@ def main():
                         mtime_dt == md.client_modified and size == md.size):
                     print(name, 'is already synced [stats match]')
                 else:
-                    print(name, 'exists with different stats, downloading')
-                    res = download(dbx, folder, subfolder, name)
-                    with open(fullname) as f:
-                        data = f.read()
-                    if res == data:
-                        print(name, 'is already synced [content match]')
-                    else:
-                        print(name, 'has changed since last sync')
-                        if yesno('Refresh %s' % name, False, args):
-                            upload(dbx, fullname, folder, subfolder, name,
-                                   overwrite=True)
+                    print(name, 'has changed since last sync')
+                    if yesno('Refresh %s' % name, False, args):
+                        upload(dbx, fullname, folder, subfolder, name,
+                               overwrite=True)
             elif yesno('Upload %s' % name, True, args):
                 upload(dbx, fullname, folder, subfolder, name)
 
