@@ -45,6 +45,7 @@ def main():
     directories, and avoids duplicate uploads by comparing size and
     mtime with the server.
     """
+    print('STARTING UPLOAD -------------')
     args = parser.parse_args()
     if sum([bool(b) for b in (args.yes, args.no, args.default)]) > 1:
         print('At most one of --yes, --no, --default is allowed')
@@ -61,7 +62,7 @@ def main():
         print(rootdir, 'is not a folder on your filesystem')
         sys.exit(1)
 
-    dbx = dropbox.Dropbox('8XZIjSECBiAAAAAAAAAAATVYNSZstP2z4IeIHXu-zFnoJl_wQj-67-zyg_EpPB23')
+    dbx = dropbox.Dropbox(TOKEN)
 
     for dn, dirs, files in os.walk(rootdir):
         subfolder = dn[len(rootdir):].strip(os.path.sep)
@@ -120,6 +121,7 @@ def main():
         dirs[:] = keep
 
     dbx.close()
+    print('FINISHED UPLOAD -------------')
 
 def list_folder(dbx, folder, subfolder):
     """List a folder.
